@@ -1,9 +1,8 @@
 import { navigateWithAgentChatViewTransition } from "@agent-native/core/client/agent-chat";
-import { useT } from "@agent-native/core/client/i18n";
 import { focusAgentChat } from "@agent-native/toolkit/app/chat";
 import { AgentSidebar } from "@agent-native/toolkit/app/chat";
 import { type ReactNode } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 import { chatThreadPath } from "@/lib/chat-paths";
 import { TAB_ID } from "@/lib/tab-id";
@@ -21,7 +20,24 @@ export function AgentInspector({
   chatHomeHandoffPending,
 }: AgentInspectorProps) {
   const navigate = useNavigate();
-  const t = useT();
+  const { pathname } = useLocation();
+  const suggestions = pathname.startsWith("/market")
+    ? [
+        "Consult Socrates, Taleb and the Statistician on this market",
+        "Who is staked on each side, and how big are the positions?",
+        "What would make this market settle as a refund?",
+      ]
+    : pathname.startsWith("/studio")
+      ? [
+          "Draft this claim and run the council preflight",
+          "Tighten the question so one source can settle it",
+          "Is the deadline safe for this category?",
+        ]
+      : [
+          "Where is the council split on sports markets?",
+          "Which live markets close in the next 24 hours?",
+          "Draft a claim about next week's weather in London",
+        ];
 
   function openAskAgentFullscreen(threadId?: string) {
     focusAgentChat();
@@ -37,13 +53,9 @@ export function AgentInspector({
       browserTabId={TAB_ID}
       openOnChatRunning={chatHomeHandoffActive}
       onFullscreenRequest={openAskAgentFullscreen}
-      emptyStateText={t("chat.inspectEmptyState")}
+      emptyStateText="Ask about markets, consult the council, or shape a claim."
       agentPageHref="/settings/agent"
-      suggestions={[
-        t("chat.inspectSuggestionCapabilities"),
-        t("chat.inspectSuggestionHello"),
-        t("chat.inspectSuggestionAction"),
-      ]}
+      suggestions={suggestions}
     >
       {children}
     </AgentSidebar>
