@@ -13,11 +13,16 @@ import {
 } from "@/lib/chat-paths";
 import { TAB_ID } from "@/lib/tab-id";
 
+const BOARD_PATH = "/board";
+
 export interface NavigationState {
   view?: string;
   path?: string;
   publicPath?: string;
   threadId?: string;
+  marketKind?: string;
+  marketId?: string;
+  draftId?: string;
 }
 
 export function useNavigationState() {
@@ -64,15 +69,22 @@ function matchesPathPrefix(pathname: string, prefix: string): boolean {
 
 export function navigationStateForPath(pathname: string): NavigationState {
   const threadId = threadIdFromPath(pathname);
+  const market = pathname.match(/^\/market\/(vs|pool)\/(\d+)/);
+  const draft = pathname.match(/^\/studio\/([^/]+)/)?.[1];
   return {
     view: viewForPath(pathname),
     path: pathname,
     publicPath: appPathFromLocalRoute(pathname),
     ...(threadId ? { threadId } : {}),
+    ...(market ? { marketKind: market[1], marketId: market[2] } : {}),
+    ...(draft ? { draftId: decodeURIComponent(draft) } : {}),
   };
 }
 
 function viewForPath(pathname: string): string {
+  if (pathname.startsWith("/board")) return "board";
+  if (pathname.startsWith("/market")) return "market";
+  if (pathname.startsWith("/studio")) return "studio";
   if (isChatPathname(pathname)) return "chat";
   if (pathname === HOME_PATH) return "home";
   if (pathname.startsWith("/database")) return "database";
@@ -88,6 +100,12 @@ function viewForPath(pathname: string): string {
 
 function pathForView(view?: string): string {
   switch (view) {
+    case "board":
+      return "/board";
+    case "market":
+      return "/board";
+    case "studio":
+      return "/studio";
     case "chat":
     case "ask":
       return NEW_CHAT_PATH;
@@ -106,7 +124,7 @@ function pathForView(view?: string): string {
     case "team":
       return "/settings/organization";
     default:
-      return HOME_PATH;
+      return BOARD_PATH;
   }
 }
 
