@@ -5,35 +5,54 @@
 
 @source "./**/*.{ts,tsx}";
 
+@font-face {
+  font-family: "Mimir Display";
+  src: url("/fonts/terminal-grotesque.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Mimir Mono";
+  src: url("/fonts/GeistMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Mimir Display", ui-monospace, monospace;
+  --font-mono: "Mimir Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-coral: #e5262a;
+  --color-coral-deep: #b3161c;
+}
+
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 0 0% 15%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 95%;
-  --secondary-foreground: 0 0% 15%;
-  --muted: 0 0% 95%;
-  --muted-foreground: 0 0% 43%;
-  --accent: 0 0% 95%;
-  --accent-foreground: 0 0% 15%;
-  --destructive: 0 91% 71%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 40%;
-  --radius: 0.5rem;
-  --sidebar-background: 0 0% 97%;
-  --sidebar-foreground: 0 0% 43%;
-  --sidebar-primary: 0 0% 15%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 95%;
-  --sidebar-accent-foreground: 0 0% 15%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 0 0% 40%;
+  --background: 41 55% 90%;
+  --foreground: 20 10% 6%;
+  --card: 42 62% 93%;
+  --card-foreground: 20 10% 6%;
+  --popover: 42 62% 94%;
+  --popover-foreground: 20 10% 6%;
+  --primary: 20 10% 6%;
+  --primary-foreground: 41 55% 92%;
+  --secondary: 42 34% 85%;
+  --secondary-foreground: 20 10% 8%;
+  --muted: 42 34% 86%;
+  --muted-foreground: 27 11% 33%;
+  --accent: 42 34% 85%;
+  --accent-foreground: 20 10% 8%;
+  --destructive: 359 79% 52%;
+  --destructive-foreground: 41 55% 96%;
+  --border: 41 21% 77%;
+  --input: 41 21% 74%;
+  --ring: 359 79% 52%;
+  --radius: 0.75rem;
+  --sidebar-background: 41 45% 87%;
+  --sidebar-foreground: 27 11% 33%;
+  --sidebar-primary: 20 10% 6%;
+  --sidebar-primary-foreground: 41 55% 92%;
+  --sidebar-accent: 41 35% 81%;
+  --sidebar-accent-foreground: 20 10% 8%;
+  --sidebar-border: 41 21% 77%;
+  --sidebar-ring: 359 79% 52%;
   --chat-sidebar-width: 17.5rem;
   --chat-sidebar-content-inset: 0.5rem;
   --chat-sidebar-row-padding: 0.75rem;
@@ -229,34 +248,34 @@
 }
 
 .dark {
-  --background: 0 0% 13%;
-  --foreground: 0 0% 90%;
-  --card: 0 0% 16.47%;
-  --card-foreground: 0 0% 90%;
-  --popover: 0 0% 15%;
-  --popover-foreground: 0 0% 90%;
-  --primary: 0 0% 75%;
-  --primary-foreground: 0 0% 10%;
-  --secondary: 0 0% 18%;
-  --secondary-foreground: 0 0% 90%;
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 60%;
-  --accent: 0 0% 18%;
-  --accent-foreground: 0 0% 90%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 24%;
-  --input: 0 0% 24%;
-  --ring: 0 0% 60%;
-  --radius: 0.5rem;
-  --sidebar-background: 0 0% 10%;
-  --sidebar-foreground: 0 0% 60%;
-  --sidebar-primary: 0 0% 75%;
-  --sidebar-primary-foreground: 0 0% 10%;
-  --sidebar-accent: 0 0% 16%;
-  --sidebar-accent-foreground: 0 0% 90%;
-  --sidebar-border: 0 0% 20%;
-  --sidebar-ring: 0 0% 60%;
+  --background: 24 9% 7%;
+  --foreground: 41 45% 88%;
+  --card: 24 8% 10%;
+  --card-foreground: 41 45% 88%;
+  --popover: 24 8% 11%;
+  --popover-foreground: 41 45% 88%;
+  --primary: 41 45% 88%;
+  --primary-foreground: 24 9% 8%;
+  --secondary: 24 7% 15%;
+  --secondary-foreground: 41 45% 88%;
+  --muted: 24 7% 14%;
+  --muted-foreground: 35 14% 62%;
+  --accent: 24 7% 15%;
+  --accent-foreground: 41 45% 88%;
+  --destructive: 2 85% 60%;
+  --destructive-foreground: 41 55% 96%;
+  --border: 28 8% 20%;
+  --input: 28 8% 22%;
+  --ring: 2 85% 60%;
+  --radius: 0.75rem;
+  --sidebar-background: 24 9% 6%;
+  --sidebar-foreground: 35 14% 62%;
+  --sidebar-primary: 41 45% 88%;
+  --sidebar-primary-foreground: 24 9% 8%;
+  --sidebar-accent: 24 7% 13%;
+  --sidebar-accent-foreground: 41 45% 88%;
+  --sidebar-border: 28 8% 16%;
+  --sidebar-ring: 2 85% 60%;
 }
 
 @layer base {
@@ -280,4 +299,57 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.34);
+}
+
+/* Mimir brand: cream paper with a faint dot grain, display type, coral accents. */
+.mimir-paper {
+  background-image: radial-gradient(
+    hsl(var(--foreground) / 0.055) 1px,
+    transparent 1.2px
+  );
+  background-size: 4px 4px;
+}
+
+.mimir-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #8f0e17 0%, #e93b37 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .mimir-wordmark {
+  background: linear-gradient(180deg, #ff6b5f 0%, #e5262a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.mimir-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b3161c;
+}
+
+.dark .mimir-eyebrow {
+  color: #ff6b5f;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mimir-rise {
+    animation: mimir-rise 220ms ease-out both;
+  }
+}
+
+@keyframes mimir-rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
