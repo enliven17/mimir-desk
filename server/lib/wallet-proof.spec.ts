@@ -53,7 +53,7 @@ function evmWallet() {
       format: "recovered",
     });
     // noble puts the recovery byte first; Ethereum wants r || s || v (27/28).
-    return `0x${bytesToHex(sig.subarray(1))}${(sig[0] + 27).toString(16)}`;
+    return `0x${bytesToHex(sig.subarray(1))}${(sig[0]! + 27).toString(16)}`;
   };
   return { address, sign };
 }

@@ -116,7 +116,7 @@ function verifySolana(address: string, message: string, signature: string) {
 function verifyEvm(address: string, message: string, signature: string) {
   if (!EVM_SIG_RE.test(signature)) return false;
   const raw = hexToBytes(signature.slice(2));
-  const v = raw[64];
+  const v = raw[64] ?? -1;
   const recovery = v >= 27 ? v - 27 : v;
   if (recovery !== 0 && recovery !== 1) return false;
   const msg = utf8ToBytes(message);
