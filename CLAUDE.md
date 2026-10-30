@@ -31,3 +31,28 @@ Use `adding-a-feature` for functional parity and `frontend-design` for a user-fa
 Before building common workspace or agent UI, read `agent-native-toolkit`; for supported customization, read `customizing-agent-native`.
 
 - Guarded verification: run `pnpm agent-native:doctor`; fix findings before done.
+
+## Mimir Desk
+
+Desk for Mimir prediction markets (Arc mainnet, USDC). `/board` lists markets (URL filters `state`, `category`, `kind`, `q`); `/market/:kind/:id` shows sides, positions, oracle verdict and saved council takes; `/studio` and `/studio/:draftId` shape claims. Say "stake", never "bet"; never mention a token. No money moves here: users open and stake on mimirmarkets.xyz.
+
+- Market data is live from the Mimir API (`MIMIR_API_BASE`); never invent markets, odds or verdicts. Drafts and takes are private to their owner.
+- Takes: get the persona prompt (`list-personas includePrompt=true`), speak only from market data, save one take per persona (re-saving replaces it).
+- Drafts: edit only the draft on screen; `run-preflight` needs question, both sides and resolution URL (`draft_incomplete`). Deadlines are ISO 8601 with offset, stored UTC.
+- `navigation` adds `marketKind`, `marketId` on market pages and `draftId` in the studio; `view-screen` adds the market, saved takes, picked personas, or the draft.
+
+| Action | Purpose |
+| --- | --- |
+| list-markets | Markets by state/kind/category/query |
+| get-market | One market, positions, verdict |
+| list-personas | Council roster, optional prompts |
+| list-council-takes | Saved takes + per-market split |
+| save-council-take | Save a persona's take |
+| delete-council-take | Remove a take |
+| list-claim-drafts | Studio drafts |
+| get-claim-draft | Draft, issues, preflight, summary |
+| create-claim-draft | New draft from idea/URL |
+| update-claim-draft | Patch draft fields |
+| run-preflight | Council vets a draft |
+| read-source | Read a public source page |
+| delete-claim-draft | Delete a draft (user asked) |
