@@ -34,7 +34,7 @@ Before building common workspace or agent UI, read `agent-native-toolkit`; for s
 
 ## Mimir Desk
 
-Desk for Mimir prediction markets (Arc mainnet, USDC). `/board` lists markets (URL filters `state`, `category`, `kind`, `q`); `/market/:kind/:id` shows sides, positions, oracle verdict and saved council takes; `/studio` and `/studio/:draftId` shape claims. Say "stake", never "bet"; never mention a token. No money moves here: users open and stake on mimirmarkets.xyz.
+Desk for Mimir prediction markets (Base, USDC). `/board` lists markets (URL filters `state`, `category`, `kind`, `q`); `/market/:kind/:id` shows sides, positions, oracle verdict and saved council takes; `/studio` and `/studio/:draftId` shape claims. Say "stake", never "bet"; never mention a token. No money moves here: users open and stake on mimirmarkets.xyz.
 
 - Sign-in: "Connect wallet" (Solana or injected EVM) signs the Mimir wallet proof with a server nonce (5 min, single use); `server/lib/wallet-auth.ts` is a Better Auth plugin passed through `createToolkitAuthPlugin({ betterAuth })`, the panel is `server/lib/wallet-sign-in-page.ts` + `public/wallet-sign-in.js`. Wallet users own data as `<address>@wallet.mimirmarkets.xyz`; email sign-up cannot claim that domain.
 - Market data is live from the Mimir API (`MIMIR_API_BASE`); never invent markets, odds or verdicts. Drafts and takes are private to their owner.

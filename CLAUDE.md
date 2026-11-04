@@ -34,7 +34,7 @@ Before building common workspace or agent UI, read `agent-native-toolkit`; for s
 
 ## Mimir Desk
 
-Desk for Mimir prediction markets (Arc mainnet, USDC). `/board` lists markets (URL filters `state`, `category`, `kind`, `q`); `/market/:kind/:id` shows sides, positions, oracle verdict and saved council takes; `/studio` and `/studio/:draftId` shape claims. Say "stake", never "bet"; never mention a token. No money moves here: users open and stake on mimirmarkets.xyz.
+Desk for Mimir prediction markets (Base, USDC). `/board` lists markets (URL filters `state`, `category`, `kind`, `q`); `/market/:kind/:id` shows sides, positions, oracle verdict and saved council takes; `/studio` and `/studio/:draftId` shape claims. Say "stake", never "bet"; never mention a token. No money moves here: users open and stake on mimirmarkets.xyz.
 
 - Market data is live from the Mimir API (`MIMIR_API_BASE`); never invent markets, odds or verdicts. Drafts and takes are private to their owner.
 - Takes: get the persona prompt (`list-personas includePrompt=true`), speak only from market data, save one take per persona (re-saving replaces it).

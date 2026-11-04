@@ -75,6 +75,8 @@ export interface PreflightResult {
 }
 
 export const MIMIR_SITE = "https://mimirmarkets.xyz";
+/** Mimir markets run on Base; the API defaults a market lookup to Arc, so every call names the chain. */
+export const MIMIR_CHAIN = "base";
 export const CREATE_URL = `${MIMIR_SITE}/en/arena/create`;
 
 export function apiBase(): string {
@@ -157,7 +159,7 @@ export async function fetchMarkets(opts: {
   kind?: MarketKind;
   limit: number;
 }): Promise<PublicMarket[]> {
-  const q = new URLSearchParams({ state: opts.state, limit: String(opts.limit) });
+  const q = new URLSearchParams({ state: opts.state, limit: String(opts.limit), chain: MIMIR_CHAIN });
   if (opts.kind) q.set("kind", opts.kind);
   const { status, body } = await request<Envelope<{ markets: PublicMarket[] }>>(
     `/api/markets?${q}`,
@@ -171,7 +173,7 @@ export async function fetchMarket(
   id: number,
 ): Promise<MarketDetail> {
   const { status, body } = await request<Envelope<{ market: MarketDetail }>>(
-    `/api/markets/${kind}/${id}`,
+    `/api/markets/${kind}/${id}?chain=${MIMIR_CHAIN}`,
     { cacheable: true },
   );
   return unwrap(status, body, "Market").market;

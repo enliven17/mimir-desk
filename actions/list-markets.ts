@@ -9,7 +9,7 @@ import { fetchMarkets, shareA } from "../server/lib/mimir.js";
 
 export default defineAction({
   description:
-    "List Mimir prediction markets (Arc mainnet, USDC) with pool sizes, deadlines, phase and how many council takes the user has saved for each. Filter by state, kind, category or a text query.",
+    "List Mimir prediction markets (Base, USDC) with pool sizes, deadlines, phase and how many council takes the user has saved for each. Filter by state, kind, category or a text query.",
   schema: z.object({
     state: z
       .enum(["live", "closing", "settled", "all"])

@@ -181,7 +181,7 @@ export default function MarketRoute() {
             ) : null}
             {m.verdict?.txHash ? (
               <a
-                href={`https://explorer.arc.io/tx/${m.verdict.txHash}`}
+                href={`https://basescan.org/tx/${m.verdict.txHash}`}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-3 inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-foreground"
